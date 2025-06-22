@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  become: false
+  gather_facts: false
+
+  tasks:
+
+    - name: Ping site
+      shell:
+        cmd: "ping -c 1 -w 2 google.com"
+      register: ping_result
+
+    - name: Ping result
+      debug:
+        msg: "{{ ping_result.stdout_lines }}"
+...
