@@ -20,6 +20,7 @@
         port: "{{ email_port }}"
         username: "{{ email_un }}"
         password: "{{ email_pw }}"
+        from: "{{ email_from }}"
         to: "{{ email_to }}"
         subject: Ping playbook results
         body: "{{ ping_result.stdout_lines }}"
