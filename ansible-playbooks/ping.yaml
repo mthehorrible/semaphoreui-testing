@@ -23,5 +23,6 @@
         to: "{{ email_to }}"
         subject: Ping playbook results
         body: "{{ ping_result.stdout_lines }}"
+        secure: always
       delegate_to: localhost
 ...
