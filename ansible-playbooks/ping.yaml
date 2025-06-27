@@ -13,4 +13,15 @@
     - name: Ping result
       debug:
         msg: "{{ ping_result.stdout_lines }}"
+
+    - name: Send email report
+      community.general.mail:
+        host: "{{ email_svr }}"
+        port: "{{ email_port }}"
+        username: "{{ email_un }}"
+        password: "{{ email_pw }}"
+        to: "{{ email_to }}"
+        subject: Ping playbook results
+        body: "{{ ping_result.stdout_lines }}"
+      delegate_to: localhost
 ...
