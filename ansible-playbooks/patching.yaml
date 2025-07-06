@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  become: true
+  become: yes
   tasks:
 
     - name: Install latest apt updates
@@ -22,7 +22,7 @@
       dnf:
         name: '*'
         state: latest
-      when: ((ansible_distribution == "RedHat") and (ansible_distribution_major_version >= "8")) or (ansible_distribution == "Rocky") or (ansible_distribution == "CentOS" and ansible_distribution_major_version >= "9") or (ansible_distribution == "Fedora")
+      when: (ansible_distribution == "RedHat" and ansible_distribution_major_version >= "8") or (ansible_distribution == "Rocky") or (ansible_distribution == "CentOS" and ansible_distribution_major_version >= "9") or (ansible_distribution == "Fedora")
       tags: always
 
     - name: Install latest yum updates
