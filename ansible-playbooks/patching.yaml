@@ -8,28 +8,28 @@
         force_apt_get: yes
         update_cache: yes
         upgrade: dist
-      when: (ansible_distribution == "Debian") or (ansible_distribution == "Ubuntu") or (ansible_distribution == "Linux Mint")
+      when: ( ansible_distribution == "Debian" ) or
+            ( ansible_distribution == "Linux Mint" ) or
+            ( ansible_distribution == "Ubuntu" )
       tags: always
 
     - name: Remove unneeded packages (apt)
       apt:
         force_apt_get: yes
         autoremove: yes
-      when: (ansible_distribution == "Debian") or (ansible_distribution == "Ubuntu") or (ansible_distribution == "Linux Mint")
+      when: ( ansible_distribution == "Debian" ) or
+            ( ansible_distribution == "Linux Mint" ) or
+            ( ansible_distribution == "Ubuntu" )
       tags: always
 
     - name: Install latest dnf updates
       dnf:
         name: '*'
         state: latest
-      when: (ansible_distribution == "RedHat" and ansible_distribution_major_version >= "8") or (ansible_distribution == "Rocky") or (ansible_distribution == "CentOS" and ansible_distribution_major_version >= "9") or (ansible_distribution == "Fedora")
-      tags: always
-
-    - name: Install latest yum updates
-      yum:
-        name: '*'
-        state: latest
-      when: (ansible_distribution == "CentOS" and ansible_distribution_major_version <= "7")
+      when: ( ansible_distribution == "RedHat" ) or 
+            ( ansible_distribution == "Rocky" ) or
+            ( ansible_distribution == "CentOS" ) or
+            ( ansible_distribution == "Fedora" )
       tags: always
 
     - name: Reboot machines (only if reboot tag used)

@@ -8,7 +8,8 @@
       name: qemu-guest-agent
       update_cache: yes
       state: latest
-    when: ( ansible_distribution == "Debian" ) or 
+    when: ( ansible_distribution == "Debian" ) or
+          ( ansible_distribution == "Linux Mint" ) or
           ( ansible_distribution == "Ubuntu" )
 
   - name: Install qemu guest agent using DNF
@@ -16,8 +17,8 @@
       name: qemu-guest-agent
       update_cache: yes
       state: latest
-    when: ( ansible_distribution == "RedHat" and ansible_distribution_major_version >= "8" ) or 
+    when: ( ansible_distribution == "RedHat" ) or 
           ( ansible_distribution == "Rocky" ) or
-          ( ansible_distribution == "CentOS" and ansible_distribution_major_version >= "9" ) or
+          ( ansible_distribution == "CentOS" ) or
           ( ansible_distribution == "Fedora" )
 ...
